@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: iabunnies-api
+    env: docker
+    region: oregon
+    plan: free
+    branch: main
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: TF_CPP_MIN_LOG_LEVEL
+        value: 2

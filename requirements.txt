@@ -1,0 +1,10 @@
+fastapi==0.100.0
+uvicorn[standard]==0.23.0
+python-multipart==0.0.6
+tensorflow==2.13.1
+keras==2.13.1
+numpy==1.23.3
+opencv-python-headless==4.8.1.78
+Pillow==10.0.0
+pydantic==1.10.13
+typing-extensions==4.5.0

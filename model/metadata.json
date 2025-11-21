@@ -1,0 +1,18 @@
+{
+  "personas": [
+    "Leonardo",
+    "Oscar"
+  ],
+  "img_size": [
+    150,
+    150
+  ],
+  "num_classes": 2,
+  "final_val_accuracy": 0.5274725556373596,
+  "final_val_loss": 0.6802700757980347,
+  "best_val_accuracy": 0.7032967209815979,
+  "epochs_trained": 11,
+  "architecture": "Xception-like with residuals",
+  "optimizer": "Adam",
+  "learning_rate": 0.001
+}

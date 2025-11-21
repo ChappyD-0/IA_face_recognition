@@ -1,0 +1,334 @@
+# ============================================================
+# IABunnies Face Recognition API - .gitignore
+# ============================================================
+
+# =============== Python ===============
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+PIPFILE.lock
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+ml-env/
+venv-api/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# =============== Machine Learning ===============
+# Modelos entrenados (IMPORTANTE: Si tus modelos son muy grandes)
+# Descomenta las siguientes líneas si NO quieres subir los modelos
+# model/*.h5
+# model/*.keras
+# model/*.pkl
+# model/*.joblib
+# model/*.pb
+# *.weights
+# *.ckpt
+
+# Datasets (NO subir datos de entrenamiento)
+data/
+data_split/
+data_processed/
+datasets/
+*.csv
+*.tsv
+
+# Checkpoints de entrenamiento
+checkpoints/
+logs/
+runs/
+*.ckpt
+*.pth
+*.pt
+
+# TensorBoard
+events.out.tfevents.*
+tensorboard_logs/
+
+# Archivos temporales de entrenamiento
+training_temp/
+temp/
+tmp/
+
+# Gráficas y visualizaciones temporales
+*.png
+*.jpg
+*.jpeg
+!model/*.png  # Permitir gráficas en model/
+training_history.png
+
+# =============== IDE / Editores ===============
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*~
+*.swp
+*.swo
+.*.swp
+.*.swo
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =============== Sistema Operativo ===============
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+# =============== Docker ===============
+# No ignorar Dockerfile, pero sí archivos temporales
+*.log
+docker-compose.override.yml
+
+# =============== Render / Deployment ===============
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+*.env
+
+# Secretos
+secrets/
+*.pem
+*.key
+*.crt
+
+# =============== Logs ===============
+*.log
+logs/
+*.out
+
+# =============== Archivos temporales ===============
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+
+# =============== Archivos de prueba ===============
+test_*.py
+*_test.py
+test_images/
+test_data/
+pruebas/
+
+# =============== Documentación generada ===============
+site/
+_build/
+.doctrees/
+
+# =============== Notebooks ===============
+*.ipynb_checkpoints
+
+# =============== Configuración local ===============
+local_settings.py
+config.local.py
+settings.local.py
+
+# =============== Base de datos ===============
+*.db
+*.sqlite
+*.sqlite3
+
+# =============== Archivos grandes ===============
+# Archivos mayores a 100MB (GitHub tiene límite)
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# =============== NO IGNORAR (importante) ===============
+# Asegurarse de que estos archivos SÍ se suban
+!model/modelo_final.h5
+!model/classes.npy
+!model/metadata.json
+!README.md
+!requirements.txt
+!Dockerfile
+!.dockerignore
+!render.yaml
+
+# =============== Archivos específicos del proyecto ===============
+# Modelos de entrenamiento intermedios
+reconocimiento-rostro/
+modelo_epoch_*.h5
+training_log.csv
+
+# Imágenes de prueba personales
+mis_pruebas/
+imagenes_test/
