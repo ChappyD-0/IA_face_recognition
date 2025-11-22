@@ -1,38 +1,64 @@
-# Python 3.8
-FROM python:3.8-slim
+# ============================================================
+# Stage 1: Builder - Compilar dependencias
+# ============================================================
+FROM python:3.8-slim AS builder
 
 WORKDIR /app
 
-# Instala dependencias del sistema 
-RUN apt-get update && apt-get install -y \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libgomp1 \
-    libgl1-mesa-glx \
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instalar herramientas de compilación
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    make \
+    pkg-config \
+    libhdf5-dev \
+    libhdf5-serial-dev \
     libglib2.0-dev \
-    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar requirements
 COPY requirements.txt .
 
-# Instala dependencias de Python
-RUN pip install --no-cache-dir --upgrade pip==23.0.1 && \
-    pip install --no-cache-dir -r requirements.txt
+# Crear virtual environment e instalar dependencias
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir --prefix=/install -r requirements.txt
 
-# Copiar código
+# ============================================================
+# Stage 2: Runtime - Imagen final limpia
+# ============================================================
+FROM python:3.8-slim
+
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1 \
+    TF_CPP_MIN_LOG_LEVEL=2 \
+    PORT=8000 \
+    PYTHONPATH=/install/lib/python3.8/site-packages
+
+# Instalar solo dependencias runtime 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    libgomp1 \
+    libgl1-mesa-glx \
+    libhdf5-103 \
+    curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Copiar dependencias instaladas desde builder
+COPY --from=builder /install /install
+
+# Copiar código de la aplicación
 COPY app/ ./app/
 COPY model/ ./model/
 
 # Exponer puerto
 EXPOSE 8000
-
-# Variables de entorno
-ENV TF_CPP_MIN_LOG_LEVEL=2
-ENV PYTHONUNBUFFERED=1
-ENV PORT=8000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
